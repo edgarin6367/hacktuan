@@ -121,7 +121,7 @@ if (isMobile) {
       start: "top top",
       end: "bottom bottom",
       pin: true,
-      scrub: 1,
+      scrub: 3,
       markers: true
     }
   });
