@@ -394,7 +394,7 @@ body {
   background-color: white;
   color: black;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 0.5rem;
   font-weight: bold;
   padding: 10px 0;
   width: 100%;
@@ -568,21 +568,33 @@ body {
     height: 30px; /* Smaller logo for mobile */
   }
   .work-container {
-     padding: 15px; /* Menos padding */
-    justify-content: flex-start;
+     /* padding: 15px; Menos padding */
+    /* justify-content: flex-start; */
+    width: 100%; /* Se asegura que el contenedor ocupe todo el ancho */
+    display: flex;
+    flex-direction: column; /* Apilar las tarjetas verticalmente */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Aumenta el espacio entre tarjetas */
+    padding: 10px 0;
+    overflow: visible; /* Permite que las tarjetas se animen */
   }
 
   .work-item {
-    width: 65vw; /* Más estrechas */
-    min-width: 65vw;
-    padding: 15px;
+    /* width: 65vw; /* Más estrechas */
+    /* min-width: 65vw; */
+    /* padding: 15px; */ 
+    width: 90%; /* Las tarjetas ocupan el 90% del ancho del contenedor */
+    max-width: 350px; /* Tamaño máximo para no hacerlas demasiado grandes */
+    opacity: 0; /* Inicialmente ocultas */
+    transform: translateY(50px); /* Las tarjetas comienzan desplazadas hacia abajo */
+    transition: all 0.4s ease; /* Transición de la animación */
   }
   .work-item img {
     height: 60px;
   }
   .third-section {
         height: auto;
-        min-height: 100vh;
         padding: 20px 0;
         overflow: visible;
   }
