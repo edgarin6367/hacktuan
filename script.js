@@ -108,22 +108,26 @@ gsap.set(cards, {
 
 // 3. Configuración inicial según dispositivo
 if (isMobile) {
-  // Versión móvil (scroll horizontal)
-  gsap.set(cards, { 
-    opacity: 1,
-    x: 0
+  const cards = gsap.utils.toArray(".work-item");
+
+  // Reiniciar las posiciones para las tarjetas
+  gsap.set(cards, {
+    opacity: 0,
+    y: 50
   });
-  
-  gsap.to(container, {
-    x: () => -(container.scrollWidth - window.innerWidth),
-    scrollTrigger: {
-      trigger: ".third-section",
-      start: "top top",
-      end: "bottom bottom",
-      pin: true,
-      scrub: 3,
-      markers: true
-    }
+
+  cards.forEach((card) => {
+    gsap.to(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",  // La animación comienza cuando la tarjeta está cerca de entrar en vista
+        toggleActions: "play none none none", // Solo anima una vez
+      },
+      opacity: 1,  // Aparece cuando pasa el trigger
+      y: 0,  // La tarjeta se mueve hacia su posición original
+      duration: 0.8,  // Duración de la animación
+      ease: "power2.out"  // Efecto de desaceleración para un movimiento más suave
+    });
   });
 } else {
   // Versión desktop (aparición escalonada)
@@ -138,7 +142,7 @@ if (isMobile) {
       opacity: 1,
       x: 0,
       y: 0,
-      duration: 0.8,
+      duration: 0.1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: ".third-section",
