@@ -176,3 +176,22 @@ window.addEventListener("resize", () => {
   ScrollTrigger.refresh();
   centerCardsDesktop();
 });
+//img transition
+document.addEventListener("DOMContentLoaded", function() {
+  const img1 = document.querySelector('.js-badge-img');
+  const img2 = document.querySelector('.js-badge-img-hover');
+  
+  let currentImage = 1;
+
+  setInterval(function() {
+    if (currentImage === 1) {
+      img1.style.opacity = 0;  // Ocultar la primera imagen
+      img2.style.opacity = 1;  // Mostrar la segunda imagen
+      currentImage = 2;
+    } else {
+      img1.style.opacity = 1;  // Mostrar la primera imagen
+      img2.style.opacity = 0;  // Ocultar la segunda imagen
+      currentImage = 1;
+    }
+  }, 3000); // Cambiar cada 3 segundos (3000 milisegundos)
+});
