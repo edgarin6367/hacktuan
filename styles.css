@@ -401,6 +401,7 @@ body {
   border: 1px solid #fff;
   margin: 20px 0 10px;
 }
+
 .info-content {
   background-color: rgb(5, 0, 0);
   color: rgb(240, 240, 240);
@@ -598,6 +599,8 @@ body {
   .work-item img {
     height: 60px;
   }
+
+
   .third-section {
         height: auto;
         padding: 20px 0;
@@ -662,6 +665,22 @@ body {
   background-color: #00000000;
   color: #000000;
 }
+.work-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra el título y las tarjetas */
+}
+.info-title-2 {
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 10px 0;
+  border: 1px solid #fff;
+  margin-bottom: 20px;
+  width: 100%;
+}
 
 .work-wrapper {
   width: 100%;
@@ -683,9 +702,9 @@ body {
 }
 
 /* Elimina cualquier .work-container duplicado */
-.work-container:not(:first-of-type) {
+/* .work-container:not(:first-of-type) {
   display: none !important;
-}
+} */
 .work-link {
   text-decoration: none;
   color: inherit;
@@ -751,7 +770,7 @@ body {
 }
 
 /*weebie*/
-webby-nominee {
+.webby-nominee {
   --badge-size: min(30vw, 20rem);
   position: absolute;
   top: 0;
@@ -760,8 +779,12 @@ webby-nominee {
   padding: 0;
   width: 100%;
   height: 100%;
+  transition: opacity 0.5s ease;
 }
-webby-nominee:before {
+.js-badge-img-hover {
+  opacity: 0; /* Ocultamos la segunda imagen al principio */
+}
+.webby-nominee:before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -769,11 +792,10 @@ webby-nominee:before {
   display: block;
   width: 150%;
   height: 140%;
-  background: radial-gradient(ellipse at 50% 55%, transparent 10%, rgba(0, 0, 0, 0.062) 50%);
   transform: translate3d(-50%, -50%, 0);
   content: "";
 }
-webby-nominee:after {
+.webby-nominee:after {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -781,12 +803,11 @@ webby-nominee:after {
   display: block;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at 50% 75%, #3c020e27 20%, transparent 75%);
   mix-blend-mode: overlay;
   transform: translate3d(-50%, -50%, 0);
   content: "";
 }
-webby-nominee a {
+.webby-nominee a {
   position: absolute;
   top: 0;
   left: 0;
@@ -794,14 +815,14 @@ webby-nominee a {
   width: 100%;
   height: 100%;
 }
-webby-nominee a:hover img {
+.webby-nominee a:hover img {
   transform: translate3d(0, -100%, 0) rotate(45deg);
 }
-webby-nominee a:hover .badge__vote {
+.webby-nominee a:hover .badge__vote {
   transform: translate3d(0, 0, 0) rotate(0);
 }
-webby-nominee .badge {
-  position: absolute;
+.webby-nominee .badge {
+  position: relative;
   top: calc(50% - var(--badge-size) * 0.5);
   left: calc(50% - var(--badge-size) * 0.5);
   z-index: 10;
@@ -810,8 +831,11 @@ webby-nominee .badge {
   background: #000c;
   border-radius: 999rem;
   overflow: hidden;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 1s ease-in-out;
 }
-webby-nominee .badge img {
+.webby-nominee .badge img {
   position: absolute;
   top: 0;
   left: 0;
@@ -819,9 +843,10 @@ webby-nominee .badge img {
   display: block;
   width: 100%;
   height: 100%;
-  transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1), opacity 1s ease-in-out;
 }
-webby-nominee .badge__vote {
+.webby-nominee .badge__vote {
   position: absolute;
   top: 0;
   left: 0;
@@ -831,8 +856,7 @@ webby-nominee .badge__vote {
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #f40c3f;
-  font: 700 40px/1 "Chivo Mono", monospace;
+  color: #ffffff;
   text-transform: uppercase;
   transform: translate3d(0, 75%, 0) rotate(45deg);
   transition: transform 1s cubic-bezier(0.83, 0, 0.17, 1);
@@ -853,14 +877,14 @@ webby-nominee .badge__vote {
     background-position: 0 300%;
   }
 }
-webby-nominee .aura {
+.webby-nominee .aura {
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 3;
   width: calc(var(--badge-size) * 1.25);
   height: calc(var(--badge-size) * 1.25);
-  background: linear-gradient(20deg, #00f8f1, #ffbd1e20 16.5%, #fe848f 33%, #fe848f20 49.5%, #00f8f1 66%, #00f8f160 85.5%, #ffbd1e 100%) 0 100%/100% 200%;
+  background: linear-gradient(20deg, #0A1F44, #2A0134 16.5%, #9B240F 33%, #fe848ecc 49.5%, #00f8f1 66%, #184A64 85.5%, #ffbd1e 100%) 0 100%/100% 200%;
   border-radius: 0 0 100% 100%;
   filter: blur(50px);
   mix-blend-mode: plus-lighter;
@@ -870,7 +894,7 @@ webby-nominee .aura {
           animation: aura-glow 5s infinite linear;
   pointer-events: none;
 }
-webby-nominee .overlay {
+.webby-nominee .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -882,7 +906,7 @@ webby-nominee .overlay {
   opacity: 0.5;
   pointer-events: none;
 }
-webby-nominee canvas {
+.webby-nominee canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -890,3 +914,18 @@ webby-nominee canvas {
   width: 100%;
   height: 100%;
 }
+
+.badge__vote {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 600px) {
+  .badge__vote {
+    font-size: 24px;
+  }
+}
+
+.badge {
+  position: relative;
+  overflow: visible; /* <- importante para que el tooltip no se corte */
+}
+
